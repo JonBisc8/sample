@@ -1,0 +1,40 @@
+SQL TIPS:
+
+create database test; / drop database test;
+
+create table city (Id serial primary key, Name varchar); / drob table city;
+
+alter table city add column Id bigserial primary key; / alter table city add Weather varchar; / alter table city alter column Weather int; / alter table city drop column Weather;
+
+insert into city (Name, Weather) values('Normandia', 'Rainy'), ('Napoleão', 'Rainy'), ('Manhattan', 'Cold'), ('Lima', 'Cold'), ('Carúpano', 'Hot');
+
+update city set Name = 'NYC' where id = 1;
+delete from city where id = 1;
+
+select * from city (limit 3) (offset 2);//only 3 after skiping 2 rows
+select Name from city;
+select Weather from city;
+
+create table person(Id serial primary key, Name varchar, Age int, Address varchar, city int references city (Id));
+
+insert into person (name, age, address, city) values ('Camilton', 63, 'Rua 3', 1);
+
+select * from person order by Name;
+
+select * from person order by Id asc/desc;
+
+select count(*) from city; //number of rows
+select age, count(*) from person group by age; //how many persons with that age
+
+select max(int) from tb;
+
+select sum(cl) from tb;// sum all 
+
+select current_timestamp;
+
+//Check price is always > 0
+create table product(
+product_no int primary key,
+name text,
+price numeric CHECK (price>0)
+);
